@@ -21,8 +21,8 @@ namespace EasyAbp.AbpHelper.Core.Steps.Abp
             var excludeDirectories = await context.EvaluateAsync(ExcludeDirectories, cancellationToken);
             LogInput(() => excludeDirectories, string.Join("; ", excludeDirectories));
 
-            TemplateType templateType;
-            if (FileExistsInDirectory(baseDirectory, "*.Host.Shared.csproj", excludeDirectories))
+            TemplateType templateType;  
+            if (FileExistsInDirectory(baseDirectory, "*.Host.Shared.csproj", excludeDirectories) || FileExistsInDirectory(baseDirectory, "*.Installer.csproj", excludeDirectories))
             {
                 templateType = TemplateType.Module;
             }
